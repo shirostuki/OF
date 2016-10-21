@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+
+
+    <!-- 配色方案A 主题、背景、深色、配色-->
+    <color name="activity_theme">#F27075</color>
+    <color name="activity_bg">#EFF2DC</color>
+    <color name="activity_dark">#CE8869</color>
+    <color name="activity_a">#FCCE5A</color>
+    <color name="activity_b">#F4C4B5</color>
+    <!-- 配色方案B -->
+    <!--<color name="activity_theme">#855953</color>-->
+    <!--<color name="activity_bg">#E8E8E5</color>-->
+    <!--<color name="activity_dark">#542530</color>-->
+    <!--<color name="activity_a">#BD9A7D</color>-->
+    <!--<color name="activity_b">#D3C3AF</color>-->
+    <!-- 配色方案C -->
+    <!--<color name="activity_theme">#F27075</color>-->
+    <!--<color name="activity_bg">#C7D4DB</color>-->
+    <!--<color name="activity_dark">#B64B70</color>-->
+    <!--<color name="activity_a">#4D6F76</color>-->
+    <!--<color name="activity_b">#97BEBC</color>-->
+    
+    <color name="transparent_white">#AAFFFFFF</color>
+</resources>

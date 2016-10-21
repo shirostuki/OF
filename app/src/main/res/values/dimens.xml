@@ -1,0 +1,47 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="nav_header_vertical_spacing">16dp</dimen>
+    <dimen name="nav_header_height">160dp</dimen>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
+
+
+    <!-- 固定的值 -->
+    <!-- 加载框的宽度和高度 -->
+    <dimen name="dialog_height">120dp</dimen>
+    <dimen name="dialog_width">280dp</dimen>
+    <!-- 字体大小 -->
+    <dimen name="text_size_min">10sp</dimen>
+    <dimen name="text_size_small">16sp</dimen>
+    <dimen name="text_size_big">14sp</dimen>
+    <dimen name="text_size_max">18sp</dimen>
+    <!-- 间距大小 -->
+    <dimen name="padding_size_min">3dp</dimen>
+    <dimen name="padding_size_min_x">4dp</dimen>
+    <dimen name="padding_size_small">5dp</dimen>
+    <dimen name="padding_size_small_x">10dp</dimen>
+    <dimen name="padding_size_big">14dp</dimen>
+    <dimen name="padding_size_max">18dp</dimen>
+    <dimen name="padding_size_max_x">20dp</dimen>
+    <!-- 边距大小-->
+    <dimen name="margin_size_small">21dp</dimen>
+    <dimen name="margin_size_big">30dp</dimen>
+    <!-- 线高/宽 -->
+    <dimen name="line_size">1px</dimen>
+    <!-- 导航 -->
+    <dimen name="activity_bar_top_size_height">109dp</dimen>
+    <dimen name="activity_bar_bottom_size_height">20dp</dimen>
+    <!-- 各种图像大小 如头像 收藏按钮 等 -->
+    <dimen name="img_head_size_min">39dp</dimen>
+    <dimen name="img_head_size_small">80dp</dimen>
+    <dimen name="img_head_size_big">80dp</dimen>
+    <!-- 圆角半径-->
+    <dimen name="radius_size">2dp</dimen>
+    <!-- 列表高度 -->
+    <dimen name="item_list_height">48dp</dimen>
+    <!-- 特殊设置的值 在每个values文件下设置 -->
+
+
+</resources>
