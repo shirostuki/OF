@@ -11,7 +11,7 @@
         android:orientation="vertical">
         
         <com.dilidili.of.view.CircleImageView
-            android:id="@+id/img_head"
+            android:id="@+id/img_head_small"
             android:layout_width="@dimen/img_head_size_small"
             android:layout_height="@dimen/img_head_size_small"
             android:layout_marginLeft="16dp"

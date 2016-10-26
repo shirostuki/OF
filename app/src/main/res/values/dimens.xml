@@ -41,6 +41,8 @@
     <dimen name="radius_size">3dp</dimen>
     <!-- 列表高度 -->
     <dimen name="item_list_height">48dp</dimen>
+    <!-- 播放器高度 -->
+    <dimen name="video_height">203dp</dimen>
     <!-- 特殊设置的值 在每个values文件下设置 -->
 
 

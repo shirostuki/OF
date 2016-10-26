@@ -10,18 +10,20 @@
     app:layout_scrollFlags="scroll|enterAlways">
 
     <ImageView
+        android:id="@+id/img_to_drawer"
         android:layout_width="7dp"
         android:layout_height="15dp"
         android:src="@mipmap/ic_drawer_home" />
 
     <com.dilidili.of.view.CircleImageView
-        android:id="@+id/img_head"
+        android:id="@+id/img_head_min"
         android:layout_width="@dimen/img_head_size_min"
         android:layout_height="@dimen/img_head_size_min"
         android:layout_marginLeft="14dp"
         android:src="@mipmap/bili_default_avatar" />
 
     <TextView
+        android:id="@+id/tv_user_name"
         style="@style/style_text_big"
         android:layout_width="0dp"
         android:layout_marginLeft="14dp"
@@ -30,21 +32,20 @@
         android:textColor="@android:color/white" />
 
     <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="22dp"
-        android:layout_height="19dp"
+        android:id="@+id/img_to_game"
+        style="@style/style_img_ic"
         android:layout_marginLeft="28dp"
         android:src="@mipmap/ic_menu_top_game_center" />
 
     <ImageView
-        android:layout_width="22dp"
-        android:layout_height="19dp"
+        android:id="@+id/img_to_download"
+        style="@style/style_img_ic"
         android:layout_marginLeft="28dp"
         android:src="@mipmap/ic_toolbar_menu_download" />
 
     <ImageView
-        android:layout_width="22dp"
-        android:layout_height="19dp"
+        android:id="@+id/img_to_search"
+        style="@style/style_img_ic"
         android:layout_marginLeft="28dp"
         android:layout_marginRight="14dp"
         android:src="@mipmap/ic_toolbar_menu_search" />

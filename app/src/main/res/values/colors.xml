@@ -25,4 +25,7 @@
     <!--<color name="activity_b">#97BEBC</color>-->
     
     <color name="transparent_white">#AAFFFFFF</color>
+    <color name="line">#CCCCCC</color>
+    <color name="bg">#FAFAFA</color>
+    <color name="gray">#EAEAEA</color>
 </resources>

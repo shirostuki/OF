@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?><!-- 直播页面 -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg"
+    android:orientation="vertical">
+    <!-- 播放器 -->
+    <VideoView
+        android:id="@+id/video_live"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/video_height" />
+
+    <!-- UP主信息简介-->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="81dp">
+    </RelativeLayout>
+    <!-- 弹幕评论 -->
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@color/gray" />
+    <!-- 发送弹幕 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="43dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
+        <EditText
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:hint="@string/input_barrage"/>
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="22dp"
+            android:src="@mipmap/ic_send_grey"
+            android:layout_marginLeft="@dimen/padding_size_small_x"
+            android:layout_marginRight="@dimen/padding_size_small_x"/>
+    </LinearLayout>
+</LinearLayout>
