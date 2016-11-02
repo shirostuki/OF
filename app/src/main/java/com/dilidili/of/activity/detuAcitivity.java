@@ -30,6 +30,9 @@ import org.opencv.android.OpenCVLoader;
 
 import tv.danmaku.ijk.media.player.IjkMediaPlayer;
 
+import static android.icu.lang.UCharacter.GraphemeClusterBreak.T;
+
+
 /**
  * Created by mary on 2016/11/1.
  */
@@ -55,14 +58,18 @@ public class DetuAcitivity extends J_BaseActivity implements IPanoPlayerListener
     private boolean isplaylive = false;
     /*罗盘*/
     private boolean isGyroEnable = false;
+    private String IP  = "";
+
     static {
         if (!OpenCVLoader.initDebug()) {
+
         }
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Log.e("----------", ""+Thread.currentThread().getName()+Thread.currentThread().getId());
         // Vitamio.initialize(MainActivity.this);
         setContentView(R.layout.activity_main_detu);
         //初始化ImageLoader
@@ -80,7 +87,16 @@ public class DetuAcitivity extends J_BaseActivity implements IPanoPlayerListener
         ImageLoader.getInstance().init(config);
         initView();
 
-        //playLive();
+        playLive();
+
+        /*播放视频按钮*/
+        findViewById(R.id.dre_video).setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View arg0) {
+                playVideo();
+            }
+        });
         /*播放直播按钮*/
         findViewById(R.id.dre_live).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -88,22 +104,7 @@ public class DetuAcitivity extends J_BaseActivity implements IPanoPlayerListener
                 playLive();
             }
         });
-        /*播放视频按钮*/
-        findViewById(R.id.dre_video).setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View arg0) {
-                isplaylive = false;
-                PanoPlayerUrl panoplayerurl = new PanoPlayerUrl();
-                panoplayerurl
-                        .SetVideoUrlImage(
-                                "http://v3.cztv.com/cztv/vod/2016/03/15/f71522061dc84e10bc012c5243585e0f/h264_1500k_mp4.mp4",
-                                "");
-                panoplayer_renderer.Play(panoplayerurl);
-
-            }
-        });
-
+        /*调转视角*/
         findViewById(R.id.Gyro).setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -114,8 +115,8 @@ public class DetuAcitivity extends J_BaseActivity implements IPanoPlayerListener
                 }
             }
         });
+        /*播放按钮*/
         btn_play.setOnClickListener(new View.OnClickListener() {
-
             @Override
             public void onClick(View v) {
                 Log.e("", "click btn_play");
@@ -137,7 +138,7 @@ public class DetuAcitivity extends J_BaseActivity implements IPanoPlayerListener
                 }
             }
         });
-
+        /*播放进度监听*/
         sb_progress.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
 
             @Override
@@ -169,6 +170,19 @@ public class DetuAcitivity extends J_BaseActivity implements IPanoPlayerListener
         });
 
     }
+
+    /*播放视频*/
+    private void playVideo() {
+        isplaylive = false;
+        IP="http://media.qicdn.detu.com/@/59008651-0543-B917-1DD6-595F14962101/2015-06-18/558270c56c4a0-similar.mp4";
+        //IP="rtmp://ptvlivef.people.com.cn/m18/s1/sd";
+        PanoPlayerUrl panoplayerurl = new PanoPlayerUrl();
+        panoplayerurl.SetVideoUrlImage(
+                IP,
+                "");
+        panoplayer_renderer.Play(panoplayerurl);
+    }
+
     @Override
     protected void initView() {
         btn_play = (Button) findViewById(R.id.btn_play);
@@ -186,41 +200,55 @@ public class DetuAcitivity extends J_BaseActivity implements IPanoPlayerListener
     /**
      * 播放直播
      */
-    public void playLive(){
-        isplaylive=true;
+    public void playLive() {
+        isplaylive = true;
         PanoPlayerUrl panoplayerurl = new PanoPlayerUrl();
-
         //播放方式一:  setXmlContent(String content);  content 必须是如下格式的XML 文本才可以播放
-
-
         //播放方式二:  setXmlUrl(String url); url 地址 必须返回的是 如上格式 的XML 文本才可以播放
-
         //panoplayerurl.setXmlUrl("http://www.detu.com/live/xinlan/live-test.xml");
-
+        /*构造一个鱼眼视频*/
         String PanoPlayer_Template = "<DetuVr> "
                 + "<settings init=\"pano1\" initmode=\"flat\" enablevr=\"false\"  title=\"\"/>"
-                + 	"<scenes>"
-                + 		"<scene name=\"pano1\"  title=\"\"    thumburl=\"\"   >"
-                + 			"<image type=\"video\" url=\"%s\" rx=\"0\" ry=\"0\" rz=\"0\"/>"
-                +            "<view hlookat=\"0\" vlookat=\"0\" fov=\"100\" vrfov=\"95\" vrz=\"0.5\" righteye=\"0.1\" fovmax=\"130\" defovmax=\"95\" gyroEnable=\"false\"/>"
-                + 		"</scene>"
-                + 	"</scenes>"
+                + "<scenes>"
+                + "<scene name=\"pano1\"  title=\"\"    thumburl=\"\"   >"
+                + "<image type=\"video\" url=\"%s\" rx=\"0\" ry=\"0\" rz=\"0\"/>"
+                + "<view hlookat=\"0\" vlookat=\"0\" fov=\"100\" vrfov=\"95\" vrz=\"0.5\" righteye=\"0.1\" fovmax=\"130\" defovmax=\"95\" gyroEnable=\"false\"/>"
+                + "</scene>"
+                + "</scenes>"
                 + "</DetuVr>";
-        String xmlstring = String.format(PanoPlayer_Template,"http://hls5.l.cztv.com/channels/lantian/wchannel102/720p.m3u8");
-
+        //初始化XML配置
+        //IP="http://hls5.l.cztv.com/channels/lantian/wchannel102/720p.m3u8";
+        IP="http://t.live.cntv.cn/m3u8/cctv-1.m3u8";
+        //String xmlstring = String.format(PanoPlayer_Template,  IP);
+        String xmlstring = String.format(PanoPlayer_Template,"","video", IP, 240,1);
+        //加载xml
         panoplayerurl.setXmlContent(xmlstring);
-
+        //开始播放
         panoplayer_renderer.Play(panoplayerurl);
     }
 
+    /**
+     * 播放出错
+     *
+     * @param s
+     * @param errorstr
+     */
     @Override
     public void PluginVideOnPlayerError(PanoPlayer.PanoPlayerErrorStatus s, String errorstr) {
-        Log.d("PanoPlay", "PluginVideOnPlayerError" + errorstr);
+        Log.e("----------", "播放出错" + errorstr);
     }
 
+    /**
+     * 播放进度变化。其中curTime为当前播放的位置；bufTime为缓冲位置；maxTime为视频总长度
+     *
+     * @param curTime
+     * @param bufTime
+     * @param maxTime
+     */
     @Override
     public void PluginVideoOnProgressChanged(final int curTime, int bufTime,
                                              final int maxTime) {
+        Log.e("----------", "播放进度变化");
         if (!isSeekBarDragging) {
             sb_progress.setMax(maxTime);
             sb_progress.setSecondaryProgress(bufTime);
@@ -252,11 +280,19 @@ public class DetuAcitivity extends J_BaseActivity implements IPanoPlayerListener
         return HH + " : " + mm + " : " + ss;
     }
 
+    /**
+     * 视频进度拖动完成
+     */
     @Override
     public void PluginVideoOnSeekFinished() {
-        Log.d("PanoPlay", "PluginVideoOnSeekFinished");
+        Log.e("----------", "视频进度拖动完成");
     }
 
+    /**
+     * 播放状态变化
+     *
+     * @param s
+     */
     @Override
     public void PluginVideoOnStatusChanged(PanoPlayer.PanoVideoPluginStatus s) {
         playerStatus = s;
@@ -298,44 +334,85 @@ public class DetuAcitivity extends J_BaseActivity implements IPanoPlayerListener
         }
     }
 
-    @Override
-    public void PanoPlayOnEnter(PanoramaData arg0) {
-        Log.d("PanoPlay", "PanoPlayOnEnter");
-    }
-
-    @Override
-    public void PanoPlayOnError(PanoPlayer.PanoPlayerErrorCode e) {
-        Log.d("PanoPlay", "PanoPlayOnError" + e);
-    }
-
-    @Override
-    public void PanoPlayOnLeave(PanoramaData arg0) {
-        Log.d("PanoPlay", "PanoPlayOnLeave");
-    }
-
-    @Override
-    public void PanoPlayOnLoaded() {
-        Log.d("PanoPlay", "PanoPlayOnLoaded");
-        findViewById(R.id.videolay).setVisibility(View.GONE);
-        Plugin plugin = panoplayer_renderer.getCurPlugin();
-        if (plugin instanceof VideoPlugin && !isplaylive) {
-            videoplugin = (VideoPlugin) plugin;
-            findViewById(R.id.videolay).setVisibility(View.VISIBLE);
-        }
-
-    }
-
+    /**
+     * 播放器数据正在加载中
+     */
     @Override
     public void PanoPlayOnLoading() {
-
+        Log.e("----------", "播放器数据正在加载中....");
     }
 
+    /**
+     * 播放器场景加载完成
+     * @param arg0
+     */
+    @Override
+    public void PanoPlayOnEnter(PanoramaData arg0) {
+        Log.e("----------", "播放器场景加载完成");
+    }
+
+    /**
+     * 播放器数据初始化完成
+     */
     @Override
     public void PluginVideoOnInit() {
+        //获取播放器插件控制器
         Plugin plugin = panoplayer_renderer.getCurPlugin();
         if (plugin != null && plugin instanceof VideoPlugin) {
             videoplugin = (VideoPlugin) plugin;
             videoplugin.setLogLevel(IjkMediaPlayer.IJK_LOG_DEFAULT);
+        }
+        Log.e("----------", "播放器数据初始化完成");
+    }
+
+    /**
+     * 播放器数据加载完成
+     */
+    @Override
+    public void PanoPlayOnLoaded() {
+        Log.e("----------", "播放器数据加载完成");
+        handler.post(new Runnable() {
+            @Override
+            public void run() {
+                findViewById(R.id.videolay).setVisibility(View.GONE);
+            }
+        });
+        Plugin plugin = panoplayer_renderer.getCurPlugin();
+        if (plugin instanceof VideoPlugin && !isplaylive) {
+            handler.post(new Runnable() {
+                @Override
+                public void run() {
+                    findViewById(R.id.videolay).setVisibility(View.VISIBLE);
+                }
+            });
+            videoplugin = (VideoPlugin) plugin;
+
+        }
+    }
+
+    /**
+     * 播放器场景已移除
+     *
+     * @param arg0
+     */
+    @Override
+    public void PanoPlayOnLeave(PanoramaData arg0) {
+        Log.e("----------", "播放器场景已移除");
+    }
+    /**
+     * 播放出错
+     * @param e
+     */
+    @Override
+    public void PanoPlayOnError(PanoPlayer.PanoPlayerErrorCode e) {
+        Log.e("----------", "播放出错" + e);
+    }
+    //为了更好的管理播放器资源引用,您需在您的onDestroy() 方法手动销毁播放器,释放播放资源。
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (panoplayer_renderer != null) {
+            panoplayer_renderer.release();
         }
     }
 }
