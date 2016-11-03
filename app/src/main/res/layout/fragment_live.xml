@@ -16,6 +16,12 @@
         android:text ="打开得图播放器"
         />
     <!-- 推荐主播 -->
-
-
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <TextView
+            android:id="@+id/text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </ScrollView>
 </LinearLayout>

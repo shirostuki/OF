@@ -11,11 +11,13 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.dilidili.of.R;
 import com.dilidili.of.base.J_BaseActivity;
@@ -25,6 +27,15 @@ import com.dilidili.of.fragment.LiveFragment;
 import com.dilidili.of.view.CircleImageView;
 import com.dilidili.of.view.WrapContentHeightViewPager;
 
+import org.xutils.common.Callback;
+import org.xutils.ex.HttpException;
+import org.xutils.http.RequestParams;
+import org.xutils.x;
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -45,12 +56,50 @@ public class MainActivity extends J_BaseActivity
     private TabLayout mTabLayout;
     /* 导航标题 */
     private String[] mTabs = new String[]{"直播", "番剧", "关注"};
+    public static String s="";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         initView();
+        RequestParams params = new RequestParams("http://live.bilibili.com/h5/23382");    // 网址(请替换成实际的网址)
+        //params.addQueryStringParameter("key", "value"); // 参数(请替换成实际的参数与值)
+        x.http().get(params, new Callback.CommonCallback<String>() {
+
+            @Override
+            public void onCancelled(CancelledException arg0) {
+
+            }
+            // 注意:如果是自己onSuccess回调方法里写了一些导致程序崩溃的代码，也会回调道该方法，因此可以用以下方法区分是网络错误还是其他错误
+            // 还有一点，网络超时也会也报成其他错误，还需具体打印出错误内容比较容易跟踪查看
+            @Override
+            public void onError(Throwable ex, boolean isOnCallback) {
+                Toast.makeText(x.app(), ex.getMessage(), Toast.LENGTH_LONG).show();
+                if (ex instanceof HttpException) { // 网络错误
+                    HttpException httpEx = (HttpException) ex;
+                    int responseCode = httpEx.getCode();
+                    String responseMsg = httpEx.getMessage();
+                    String errorResult = httpEx.getResult();
+                    // ...
+                } else { // 其他错误
+                    // ...
+                }
+            }
+
+            // 不管成功或者失败最后都会回调该接口
+            @Override
+            public void onFinished() {
+
+            }
+
+            @Override
+            public void onSuccess(String arg0) {
+                Log.e("TCP", ""+arg0);
+                s =arg0;
+
+            }
+        });
     }
 
 

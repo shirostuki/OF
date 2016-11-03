@@ -4,12 +4,8 @@ import android.app.Application;
 import android.graphics.Typeface;
 import android.os.Vibrator;
 
-import com.nostra13.universalimageloader.cache.disc.naming.Md5FileNameGenerator;
-import com.nostra13.universalimageloader.core.DisplayImageOptions;
-import com.nostra13.universalimageloader.core.ImageLoader;
-import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
-import com.nostra13.universalimageloader.core.assist.ImageScaleType;
-import com.nostra13.universalimageloader.core.assist.QueueProcessingType;
+import org.xutils.BuildConfig;
+import org.xutils.x;
 
 import java.lang.reflect.Field;
 
@@ -32,6 +28,8 @@ public class J_Application extends Application {
         super.onCreate();
         setmTypeFace();
         this.mVibrator = (Vibrator) this.getApplicationContext().getSystemService(VIBRATOR_SERVICE);
+        x.Ext.init(this);
+        x.Ext.setDebug(BuildConfig.DEBUG); // 是否输出debug日志, 开启debug会影响性能.
     }
 
     public static J_Application getInstance() {

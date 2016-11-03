@@ -7,10 +7,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.dilidili.of.R;
 import com.dilidili.of.activity.DetuAcitivity;
 import com.dilidili.of.activity.LiveActivity;
+import com.dilidili.of.activity.MainActivity;
 import com.dilidili.of.base.J_BaseFragment;
 
 /**
@@ -28,6 +30,7 @@ public class LiveFragment extends J_BaseFragment {
             @Override
             public void onClick(View v) {
                 mBaseActivity.intentActivity(mBaseActivity, LiveActivity.class);
+
             }
         });
         view.findViewById(R.id.btn_2).setOnClickListener(new View.OnClickListener() {
@@ -36,6 +39,7 @@ public class LiveFragment extends J_BaseFragment {
                 mBaseActivity.intentActivity(mBaseActivity, DetuAcitivity.class);
             }
         });
+        ((TextView)(view.findViewById(R.id.text))).setText(MainActivity.s+"==");
         return view;
     }
 }

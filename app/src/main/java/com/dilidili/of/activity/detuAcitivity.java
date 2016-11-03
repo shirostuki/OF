@@ -30,8 +30,6 @@ import org.opencv.android.OpenCVLoader;
 
 import tv.danmaku.ijk.media.player.IjkMediaPlayer;
 
-import static android.icu.lang.UCharacter.GraphemeClusterBreak.T;
-
 
 /**
  * Created by mary on 2016/11/1.
@@ -58,7 +56,7 @@ public class DetuAcitivity extends J_BaseActivity implements IPanoPlayerListener
     private boolean isplaylive = false;
     /*罗盘*/
     private boolean isGyroEnable = false;
-    private String IP  = "";
+    private String IP = "";
 
     static {
         if (!OpenCVLoader.initDebug()) {
@@ -66,12 +64,16 @@ public class DetuAcitivity extends J_BaseActivity implements IPanoPlayerListener
         }
     }
 
+    private int roomId = 335045;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Log.e("----------", ""+Thread.currentThread().getName()+Thread.currentThread().getId());
         // Vitamio.initialize(MainActivity.this);
         setContentView(R.layout.activity_main_detu);
+
+
         //初始化ImageLoader
         DisplayImageOptions defaultOptions = new DisplayImageOptions.Builder()
                 .imageScaleType(ImageScaleType.NONE).cacheInMemory()
@@ -87,7 +89,7 @@ public class DetuAcitivity extends J_BaseActivity implements IPanoPlayerListener
         ImageLoader.getInstance().init(config);
         initView();
 
-        playLive();
+        //playLive();
 
         /*播放视频按钮*/
         findViewById(R.id.dre_video).setOnClickListener(new View.OnClickListener() {
@@ -174,8 +176,8 @@ public class DetuAcitivity extends J_BaseActivity implements IPanoPlayerListener
     /*播放视频*/
     private void playVideo() {
         isplaylive = false;
-        IP="http://media.qicdn.detu.com/@/59008651-0543-B917-1DD6-595F14962101/2015-06-18/558270c56c4a0-similar.mp4";
-        //IP="rtmp://ptvlivef.people.com.cn/m18/s1/sd";
+        //IP = "http://media.qicdn.detu.com/@/59008651-0543-B917-1DD6-595F14962101/2015-06-18/558270c56c4a0-similar.mp4";
+        IP="http://live-play.acgvideo.com/live/314/live_5439754_4821853.flv?wsSecret=ea2943b3c681f3b1bea17d2a35b509be&wsTime=57f36099";
         PanoPlayerUrl panoplayerurl = new PanoPlayerUrl();
         panoplayerurl.SetVideoUrlImage(
                 IP,
@@ -218,11 +220,13 @@ public class DetuAcitivity extends J_BaseActivity implements IPanoPlayerListener
                 + "</DetuVr>";
         //初始化XML配置
         //IP="http://hls5.l.cztv.com/channels/lantian/wchannel102/720p.m3u8";
-        IP="http://t.live.cntv.cn/m3u8/cctv-1.m3u8";
-        //String xmlstring = String.format(PanoPlayer_Template,  IP);
-        String xmlstring = String.format(PanoPlayer_Template,"","video", IP, 240,1);
+
+        //IP = "http://hls.yy.com/newlive/92094861_2450367234_10057.m3u8?a8a4f678cd771ec2f&t=1478149837&tk=fbe75a6de9a65f94e99bb5c47c626f13&uid=0";
+        String xmlstring = String.format(PanoPlayer_Template,  "http://live.haining.tv/hnfw/sd/live.m3u8");
+        IP ="http://devimages.apple.com/iphone/samples/bipbop/bipbopall.m3u8";
+        //String xmlstring = String.format(PanoPlayer_Template, "", "video", IP, 240, 1);
         //加载xml
-        panoplayerurl.setXmlContent(xmlstring);
+        panoplayerurl.setXmlContent(IP);
         //开始播放
         panoplayer_renderer.Play(panoplayerurl);
     }
@@ -344,6 +348,7 @@ public class DetuAcitivity extends J_BaseActivity implements IPanoPlayerListener
 
     /**
      * 播放器场景加载完成
+     *
      * @param arg0
      */
     @Override
@@ -362,7 +367,7 @@ public class DetuAcitivity extends J_BaseActivity implements IPanoPlayerListener
             videoplugin = (VideoPlugin) plugin;
             videoplugin.setLogLevel(IjkMediaPlayer.IJK_LOG_DEFAULT);
         }
-        Log.e("----------", "播放器数据初始化完成");
+        Log.e("----------", "播放器数据初始化完成--" + panoplayer_renderer.getCurrentPanoramaData().thumbUrl);
     }
 
     /**
@@ -399,14 +404,17 @@ public class DetuAcitivity extends J_BaseActivity implements IPanoPlayerListener
     public void PanoPlayOnLeave(PanoramaData arg0) {
         Log.e("----------", "播放器场景已移除");
     }
+
     /**
      * 播放出错
+     *
      * @param e
      */
     @Override
     public void PanoPlayOnError(PanoPlayer.PanoPlayerErrorCode e) {
         Log.e("----------", "播放出错" + e);
     }
+
     //为了更好的管理播放器资源引用,您需在您的onDestroy() 方法手动销毁播放器,释放播放资源。
     @Override
     protected void onDestroy() {
