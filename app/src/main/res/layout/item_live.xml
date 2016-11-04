@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?><!-- 列表元素 常用-->
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="200dp"
+    android:layout_margin="@dimen/radius_size"
+    android:focusable="true"
+    android:clickable="true"
+    android:foreground="?android:attr/selectableItemBackground"
+    card:cardBackgroundColor="@android:color/white"
+    card:cardCornerRadius="@dimen/card_size"
+    card:cardElevation="@dimen/card_size"
+    card:cardMaxElevation="@dimen/card_size"
+    card:cardPreventCornerOverlap="true"
+    card:cardUseCompatPadding="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/img_cover"
+            android:layout_width="match_parent"
+            android:layout_height="100dp" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="8dp">
+
+            <TextView
+                android:id="@+id/tv_title"
+                style="@style/style_text_min_x"
+                android:layout_marginBottom="@dimen/padding_size_small"
+                android:ellipsize="none"
+                android:maxLines="2"
+                android:minLines="2" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_below="@id/tv_title"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tv_up_name"
+                    style="@style/style_text_min_m"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:text="xxx"
+                    android:textColor="@android:color/darker_gray" />
+
+                <ImageView
+                    android:id="@+id/img_cross"
+                    style="@style/style_img_ic_cross"
+                    android:src="@mipmap/xs" />
+
+                <TextView
+                    android:id="@+id/tv_focus_count"
+                    style="@style/style_text_min_m"
+                    android:layout_marginLeft="@dimen/padding_size_min"
+                    android:text="12357"
+                    android:textColor="@android:color/darker_gray" />
+            </LinearLayout>
+        </RelativeLayout>
+    </LinearLayout>
+</android.support.v7.widget.CardView>

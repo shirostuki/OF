@@ -14,6 +14,8 @@
     <dimen name="dialog_width">280dp</dimen>
     <!-- 字体大小 -->
     <dimen name="text_size_min">8sp</dimen>
+    <dimen name="text_size_min_m">10sp</dimen>
+    <dimen name="text_size_min_x">12sp</dimen>
     <dimen name="text_size_small">14sp</dimen>
     <dimen name="text_size_big">16sp</dimen>
     <dimen name="text_size_max">18sp</dimen>
@@ -39,11 +41,12 @@
     <dimen name="img_head_size_big">80dp</dimen>
     <!-- 圆角半径-->
     <dimen name="radius_size">3dp</dimen>
+    <dimen name="card_size">2dp</dimen>
     <!-- 列表高度 -->
     <dimen name="item_list_height">48dp</dimen>
     <!-- 播放器高度 -->
     <dimen name="video_height">203dp</dimen>
+    <!-- 点击数据 -->
+    <dimen name="touch_raise">2dp</dimen>
     <!-- 特殊设置的值 在每个values文件下设置 -->
-
-
 </resources>

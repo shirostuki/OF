@@ -36,7 +36,16 @@
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
     </style>
-
+    <style name="style_text_min_m">
+        <item name="android:textSize">@dimen/text_size_min_m</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+    <style name="style_text_min_x">
+        <item name="android:textSize">@dimen/text_size_min_x</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
     <style name="style_text_small">
         <item name="android:textSize">@dimen/text_size_small</item>
         <item name="android:layout_width">wrap_content</item>
@@ -56,5 +65,13 @@
     <style name="style_img_ic">
         <item name="android:layout_width">22dp</item>
         <item name="android:layout_height">19dp</item>
+    </style>
+    <style name="style_img_ic_min">
+        <item name="android:layout_width">6dp</item>
+        <item name="android:layout_height">12dp</item>
+    </style>
+    <style name="style_img_ic_cross">
+        <item name="android:layout_width">19dp</item>
+        <item name="android:layout_height">10dp</item>
     </style>
 </resources>

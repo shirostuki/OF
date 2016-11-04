@@ -177,7 +177,7 @@ public class DetuAcitivity extends J_BaseActivity implements IPanoPlayerListener
     private void playVideo() {
         isplaylive = false;
         //IP = "http://media.qicdn.detu.com/@/59008651-0543-B917-1DD6-595F14962101/2015-06-18/558270c56c4a0-similar.mp4";
-        IP="http://live-play.acgvideo.com/live/314/live_5439754_4821853.flv?wsSecret=ea2943b3c681f3b1bea17d2a35b509be&wsTime=57f36099";
+        IP="http://58.135.196.138:8090/live/369B8B9031894010B5BA822A1637FEF1/369B8B9031894010B5BA822A1637FEF1.m3u8";
         PanoPlayerUrl panoplayerurl = new PanoPlayerUrl();
         panoplayerurl.SetVideoUrlImage(
                 IP,
