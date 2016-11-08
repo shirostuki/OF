@@ -14,7 +14,6 @@ import android.widget.TextView;
 
 import com.alibaba.fastjson.JSON;
 import com.dilidili.of.R;
-import com.dilidili.of.activity.DetuAcitivity;
 import com.dilidili.of.activity.LiveActivity;
 import com.dilidili.of.adapter.ListItemBaseAdapter;
 import com.dilidili.of.base.J_BaseFragment;
@@ -59,7 +58,7 @@ public class LiveFragment extends J_BaseFragment implements AdapterView.OnItemCl
         mView.findViewById(R.id.btn_2).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mBaseActivity.intentActivity(mBaseActivity, DetuAcitivity.class);
+                //mBaseActivity.intentActivity(mBaseActivity, DetuAcitivity.class);
             }
         });
         initView();

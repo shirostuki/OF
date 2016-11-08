@@ -48,12 +48,5 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="adjustPan|stateHidden" />
-        <!--得图播放器 -->
-        <activity
-            android:name=".activity.DetuAcitivity"
-            android:configChanges="keyboard|orientation|screenSize"
-            android:screenOrientation="sensor"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:windowSoftInputMode="adjustPan|stateHidden" />
     </application>
 </manifest>

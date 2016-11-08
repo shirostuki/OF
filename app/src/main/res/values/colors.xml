@@ -28,4 +28,7 @@
     <color name="line">#CCCCCC</color>
     <color name="bg">#FAFAFA</color>
     <color name="gray">#EAEAEA</color>
+    <!-- 哔哩哔哩 -->
+    <color name="cl_default">#424242</color>
+    <color name="cl_error">#ffffff</color>
 </resources>
